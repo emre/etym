@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Etym: {{ word | capitalize }} | Kelime Ansiklopedisi</title>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Etym <sub><em>Kelime Ansiklopedisi</em></sub></h1>
+    </header>
+    <div id="main" role="main">
+      <form action="/" method="get">
+        <input type="text" name="w" value="{{ word }}" placeholder="Aranacak Kelime">
+        <button type="submit">Ara</button>
+        <button type="button">Yeni</button>
+      </form>
+      <article>
+        <h2>{{ word | capitalize }}</h2>
+        <p>
+          Ipsum nesciunt <abbr>tenetur</abbr> blanditiis magni nam accusamus
+          consectetur illo repudiandae <b>dolores</b>. Minima sed doloribus
+          saepe nemo nostrum explicabo! Elit fugit eaque sunt quasi quos amet,
+          est ab corporis adipisci ipsa?
+        </p>
+        <nav>
+          <ul>
+            <li><a href="/{{ word | lower | urlencode }}/edit">Düzenle</a></li>
+            <li><a href="/{{ word | lower | urlencode }}/extend">Genişlet</a></li>
+            <li><a href="/{{ word | lower | urlencode }}/reporttypo">İmla Hatası Bildir</a></li>
+          </ul>
+        </nav>
+      </article>
+      <hr>
+      <section>
+        <h3>Türediği Kelimeler</h3>
+        <ul>
+          <li><a href="/test1">test1</a></li>
+          <li><a href="/test2">test2</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3>Türettiği Kelimeler</h3>
+        <ul>
+          <li><a href="/test1">test1</a></li>
+          <li><a href="/test2">test2</a></li>
+        </ul>
+      </section>
+    </div>
+    <footer>
+      <p class="disclaimer">
+        Consectetur corrupti nisi distinctio excepturi ratione molestias 
+        accusantium. Saepe laudantium sit quidem inventore nesciunt 
+        distinctio. Ut commodi autem perspiciatis molestias dicta facilis. 
+        Illo veniam quis ipsam animi quas obcaecati maiores!
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
