@@ -3,20 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Etym: {{ word | capitalize }} | Kelime Ansiklopedisi</title>
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
   <div class="wrapper">
     <header>
-      <h1>Etym <sub><em>Kelime Ansiklopedisi</em></sub></h1>
+      <h1>Etym.org <sub><em>Kelime Ansiklopedisi</em></sub></h1>
     </header>
     <div id="main" role="main">
-      <form action="/" method="get">
-        <input type="text" name="w" value="{{ word }}" placeholder="Aranacak Kelime">
-        <button type="submit">Ara</button>
-        <button type="button">Yeni</button>
-      </form>
+      <fieldset>
+        <form action="/" method="get">
+          <input type="text" name="w" value="{{ word }}" placeholder="Aranacak Kelime">
+          <button type="submit">Ara</button>
+          <button type="button">Rastgele Kelime Bul</button>
+        </form>
+      </fieldset>
       <article>
         <h2>{{ word | capitalize }}</h2>
+        <h3>Fiil, Arapça <span lang="ar">123</span></h3>
         <p>
           Ipsum nesciunt <abbr>tenetur</abbr> blanditiis magni nam accusamus
           consectetur illo repudiandae <b>dolores</b>. Minima sed doloribus
@@ -25,9 +29,9 @@
         </p>
         <nav>
           <ul>
-            <li><a href="/{{ word | lower | urlencode }}/edit">Düzenle</a></li>
-            <li><a href="/{{ word | lower | urlencode }}/extend">Genişlet</a></li>
-            <li><a href="/{{ word | lower | urlencode }}/reporttypo">İmla Hatası Bildir</a></li>
+            <li><a href="/edit?word={{ word | lower | urlencode }}">Düzenle</a></li>
+            <li><a href="/extend?word={{ word | lower | urlencode }}">Genişlet</a></li>
+            <li><a href="/typo?word={{ word | lower | urlencode }}">İmla Hatası</a></li>
           </ul>
         </nav>
       </article>

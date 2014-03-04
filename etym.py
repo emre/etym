@@ -24,6 +24,6 @@ def word(word):
 
 @app.route('/')
 def index():
-    search = request.args.get('w') or request.args.get('word', '');
+    search = request.args.get('w') or request.args.get('word', 'hello');
     return word(search); 
 
