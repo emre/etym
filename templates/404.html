@@ -1,5 +1,18 @@
-{% if word %}
-<h1>{{ word }} kelimesi bulunamadı.</h1>
-{% else %}
-<h1>Veritabanında hiç kelime yok.</h1>
+{% extends "base.html" %}
+{% block title %}Etym.org | Kelime Ansiklopedisi{% endblock %}
+{% block form %}{% endblock %}
+{% block content %}
+  <article>
+    <h2>{{ word }}</h2>
+    <p>Bu kelime bulunamadı. İsterseniz bu kelime hakkında bilgi ekleyebilirsiniz.</p>
+    {% if word %}
+    <nav>
+      <ul>
+        <li><a href="/new?word={{ word | lower | urlencode }}">Kelime Ekle</a></li>
+      </ul>
+    </nav>
+    {% endif %}
+  </article>
 {% endif %}
+{% endblock %}
+{% block details %}{% endblock %}
