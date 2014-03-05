@@ -1,11 +1,14 @@
 import os
 import time
 import sqlite3
-from flask import g, Flask, request, make_response
+from flask import g, Flask, request, make_response, jsonify
 from flask import render_template, send_from_directory
+from flask import redirect, url_for
 
 app = Flask(__name__)
 is_prod = 'heroku' in os.environ.get('PYTHONHOME', '')
+
+app.debug = not is_prod
 
 # Database
 DATABASE = "etym.db" if is_prod else "etym-dev.db"
@@ -38,20 +41,36 @@ def render_plain(template, **context):
     response.headers['Content-Type'] = 'text/plain'
     return response
 
+def get_word(word=None):
+    if not word:
+        etym = query_db("SELECT * FROM word ORDER BY RANDOM() LIMIT 1", one=True)
+    else:
+        etym = query_db("SELECT * FROM word WHERE word = ?", [word], one=True)
+    return etym
+
 # Views
 @app.route('/<word>')
 def word(word):
-    if word is None:
-        random = query_db("SELECT * FROM word ORDER BY RANDOM() LIMIT 1", one=True)
-        word_item = random
-    else:
-        word_item = query_db("SELECT * FROM word WHERE word = ?", [word], one=True)
-
-    if word_item is None:
+    etym = get_word(word)
+    if not etym:
         return make_response(render_template('404.html', word=word), 404)
+    return render_template('index.html', word=etym)
 
-    return render_template('index.html', word=word_item)
+@app.route('/random')
+def random():
+    etym = get_word()
+    return redirect(url_for('word', word=etym['word']))
 
+@app.route('/api')
+@app.route('/api/<word>')
+def api(word=None):
+    etym = get_word(word)
+    if not etym:
+        return jsonify({"word": False})
+    return jsonify(**etym)
+
+
+@app.route('/about')
 @app.route('/humans.txt')
 def about():
     date = time.ctime(os.path.getmtime(__file__))
@@ -67,6 +86,10 @@ def extend():
 
 @app.route('/typo')
 def typo():
+    return "coming soon"
+
+@app.route('/new')
+def new():
     return "coming soon"
 
 @app.route('/')

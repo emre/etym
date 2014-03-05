@@ -1,18 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Etym.org | Kelime Ansiklopedisi{% endblock %}
-{% block form %}{% endblock %}
 {% block content %}
   <article>
     <h2>{{ word }}</h2>
-    <p>Bu kelime bulunamadı. İsterseniz bu kelime hakkında bilgi ekleyebilirsiniz.</p>
+    <p>Bu kelime bulunamadı. İsterseniz bu kelimeyi de ekleyebilirsiniz.</p>
     {% if word %}
     <nav>
       <ul>
-        <li><a href="/new?word={{ word | lower | urlencode }}">Kelime Ekle</a></li>
+        <li><a href="/new?word={{ word | lower | urlencode }}">Bu Kelimeyi Ekle</a></li>
       </ul>
     </nav>
     {% endif %}
   </article>
-{% endif %}
 {% endblock %}
 {% block details %}{% endblock %}
