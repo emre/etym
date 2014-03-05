@@ -1,26 +1,41 @@
 import os
+import sqlite3
+from flask import g
 from flask import Flask
 from flask import request
 from flask import render_template
-from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-db = SQLAlchemy(app)
 
-# Models
-class Word(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    word = db.Column(db.String(80))
-    original = db.Column(db.String(80))
-    word_type = db.Column(db.String(40))
-    data = db.Column(db.Text)
-    create_date = db.Column(db.DateTime)
+DATABASE = "etym.db"
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = connect_to_database()
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
 
 # Views
 @app.route('/<word>')
 def word(word):
     return render_template('index.html', word=word)
+
+@app.route('/edit')
+def edit():
+    return "coming soon"
+
+@app.route('/extend')
+def extend():
+    return "coming soon"
+
+@app.route('/typo')
+def typo():
+    return "coming soon"
 
 @app.route('/')
 def index():
