@@ -5,9 +5,12 @@ from flask import g, Flask, request, make_response
 from flask import render_template, send_from_directory
 
 app = Flask(__name__)
+is_prod = 'heroku' in os.environ.get('PYTHONHOME', '')
 
 # Database
-DATABASE = "etym.db"
+DATABASE = "etym.db" if is_prod else "etym-dev.db"
+
+# note to reviewer: C/P from Flask doc.
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -15,12 +18,14 @@ def get_db():
         db.row_factory = sqlite3.Row
     return db
 
+# note to reviewer: C/P from Flask doc.
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
+# note to reviewer: C/P from Flask doc.
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
@@ -41,8 +46,9 @@ def word(word):
         word_item = random
     else:
         word_item = query_db("SELECT * FROM word WHERE word = ?", [word], one=True)
-        if (word_item is None):
-            return make_response(render_template('404.html', word=word), 404)
+
+    if (word_item is None):
+        return make_response(render_template('404.html', word=word), 404)
 
     return render_template('index.html', word=word_item)
 
