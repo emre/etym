@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Etym: {{ word | capitalize }} | Kelime Ansiklopedisi</title>
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="static/css/main.css">
 </head>
 <body>
@@ -15,12 +16,11 @@
         <form action="/" method="get">
           <input type="text" name="w" value="{{ word }}" placeholder="Aranacak Kelime">
           <button type="submit">Ara</button>
-          <button type="button">Rastgele Kelime Bul</button>
         </form>
       </fieldset>
       <article>
         <h2>{{ word | capitalize }}</h2>
-        <h3>Fiil, Arapça <span lang="ar">123</span></h3>
+        <h3>Fiil, Arapça: <span lang="ar">للغة العربية</span></h3>
         <p>
           Ipsum nesciunt <abbr>tenetur</abbr> blanditiis magni nam accusamus
           consectetur illo repudiandae <b>dolores</b>. Minima sed doloribus
@@ -43,20 +43,26 @@
           <li><a href="/test2">test2</a></li>
         </ul>
       </section>
-      <section>
+      <section class="padding">
         <h3>Türettiği Kelimeler</h3>
         <ul>
           <li><a href="/test1">test1</a></li>
           <li><a href="/test2">test2</a></li>
         </ul>
       </section>
+      <a href="/random" class="random">
+        <span>
+          <i class="loading"></i>
+        </span>
+        Rastgele Kelime Bul
+      </a>
     </div>
+    <div class="clear"></div>
     <footer>
       <p class="disclaimer">
-        Consectetur corrupti nisi distinctio excepturi ratione molestias 
-        accusantium. Saepe laudantium sit quidem inventore nesciunt 
-        distinctio. Ut commodi autem perspiciatis molestias dicta facilis. 
-        Illo veniam quis ipsam animi quas obcaecati maiores!
+        etym.org’da yer alan verilerin kesinliği doğru değildir.<br>
+        Bilimsel kaynak olarak gösterilemez.<br>
+        &copy; 2014 - <a href="/humants.txt">Hakkında ve İletişim</a>
       </p>
     </footer>
   </div>
