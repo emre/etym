@@ -13,6 +13,11 @@ def get_db():
         db = g._database = connect_to_database()
     return db
 
+def render_plain(template, **context):
+    response = make_response(render_template(template, **context))
+    response.headers['Content-Type'] = 'text/plain'
+    return response
+
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
@@ -27,9 +32,7 @@ def word(word):
 @app.route('/humans.txt')
 def about():
     date = time.ctime(os.path.getmtime(__file__))
-    response = make_response(render_template('humans.txt', date=date))
-    response.headers['Content-Type'] = 'text/plain'
-    return response
+    return render_plain('humans.txt', date=date)
 
 @app.route('/edit')
 def edit():
