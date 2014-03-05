@@ -1,2 +1,3 @@
 *.pyc
 etym.db
+.DS_Store
