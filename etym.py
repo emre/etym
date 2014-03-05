@@ -41,13 +41,13 @@ def render_plain(template, **context):
 # Views
 @app.route('/<word>')
 def word(word):
-    if (word is None):
+    if word is None:
         random = query_db("SELECT * FROM word ORDER BY RANDOM() LIMIT 1", one=True)
         word_item = random
     else:
         word_item = query_db("SELECT * FROM word WHERE word = ?", [word], one=True)
 
-    if (word_item is None):
+    if word_item is None:
         return make_response(render_template('404.html', word=word), 404)
 
     return render_template('index.html', word=word_item)
