@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Etym: {{ word | capitalize }} | Kelime Ansiklopedisi</title>
+  <title>Etym.org: {{ word.word | capitalize }} | Kelime Ansiklopedisi</title>
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="static/css/main.css">
 </head>
@@ -14,24 +14,19 @@
     <div id="main" role="main">
       <fieldset>
         <form action="/" method="get">
-          <input type="text" name="w" value="{{ word }}" placeholder="Aranacak Kelime">
+          <input type="text" name="w" value="{{ word.word }}" placeholder="Aranacak kelime, sözcük veya söz öbeği">
           <button type="submit">Ara</button>
         </form>
       </fieldset>
       <article>
-        <h2>{{ word | capitalize }}</h2>
-        <h3>Fiil, Arapça: <span lang="ar">للغة العربية</span></h3>
-        <p>
-          Ipsum nesciunt <abbr>tenetur</abbr> blanditiis magni nam accusamus
-          consectetur illo repudiandae <b>dolores</b>. Minima sed doloribus
-          saepe nemo nostrum explicabo! Elit fugit eaque sunt quasi quos amet,
-          est ab corporis adipisci ipsa?
-        </p>
+        <h2>{{ word.word | capitalize }}</h2>
+        <h3>{{ word.type }}, {{ word.origin }}: <span lang="{{ word.origin_code }}">{{ word.original_word }}</span></h3>
+        <p>{{ word.description | safe }}</p>
         <nav>
           <ul>
-            <li><a href="/edit?word={{ word | lower | urlencode }}">Düzenle</a></li>
-            <li><a href="/extend?word={{ word | lower | urlencode }}">Genişlet</a></li>
-            <li><a href="/typo?word={{ word | lower | urlencode }}">İmla Hatası</a></li>
+            <li><a href="/edit?word={{ word.word | lower | urlencode }}">Düzenle</a></li>
+            <li><a href="/extend?word={{ word.word | lower | urlencode }}">Genişlet</a></li>
+            <li><a href="/typo?word={{ word.word | lower | urlencode }}">İmla Hatası</a></li>
           </ul>
         </nav>
       </article>
