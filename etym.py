@@ -6,6 +6,7 @@ from flask import render_template, send_from_directory
 
 app = Flask(__name__)
 
+# Database
 DATABASE = "etym.db"
 def get_db():
     db = getattr(g, '_database', None)
@@ -13,16 +14,17 @@ def get_db():
         db = g._database = connect_to_database()
     return db
 
-def render_plain(template, **context):
-    response = make_response(render_template(template, **context))
-    response.headers['Content-Type'] = 'text/plain'
-    return response
-
 @app.teardown_appcontext
 def close_connection(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
+
+# Helpers
+def render_plain(template, **context):
+    response = make_response(render_template(template, **context))
+    response.headers['Content-Type'] = 'text/plain'
+    return response
 
 # Views
 @app.route('/<word>')
@@ -48,6 +50,7 @@ def typo():
 
 @app.route('/')
 def index():
+    # TODO: Database select
     search = request.args.get('w') or request.args.get('word', 'hello');
     return word(search); 
 
