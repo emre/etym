@@ -31,7 +31,7 @@ header {
     height: 76px;
     margin: 0 auto;
     background: url("../img/etym-logo.png") no-repeat;
-    text-indent: -9999px;
+    text-indent: -99999px;
   }
 }
 
@@ -81,6 +81,10 @@ article {
     height: 53px;
     padding: 14px 0 0 20px;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
     background: #767777;
     font-weight: 700;
     font-size: 18px;
@@ -117,6 +121,10 @@ article {
         display: block;
         padding: 7px 10px 0;
         box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
         background: #80b58e;
         text-transform: uppercase;
         color: #fff;
@@ -128,6 +136,8 @@ article {
 /* horizontal rule */
 hr {
   width: 100%;
+  float: left;
+  position: relative;
   margin: 0;
   background: #dbdbdb;
   border: 0;
@@ -136,8 +146,13 @@ hr {
 /* section */
 section {
   width: 100%;
+  float: left;
   padding: 15px 20px;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   background: #fff;
 
   &.padding {
@@ -175,6 +190,10 @@ a.random {
   float: right;
   padding-left: 10px;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   background: #80b58e;
   font-weight: 700;
   font-size: 18px;
@@ -198,15 +217,15 @@ a.random {
     }
 
     .loading {
-      animation: animationFrames linear 0.7s;
+      animation: animationFrames linear 0.5s;
       animation-iteration-count: 1;
-      -webkit-animation: animationFrames linear 0.7s;
+      -webkit-animation: animationFrames linear 0.5s;
       -webkit-animation-iteration-count: 1;
-      -moz-animation: animationFrames linear 0.7s;
+      -moz-animation: animationFrames linear 0.5s;
       -moz-animation-iteration-count: 1;
-      -o-animation: animationFrames linear 0.7s;
+      -o-animation: animationFrames linear 0.5s;
       -o-animation-iteration-count: 1;
-      -ms-animation: animationFrames linear 0.7s;
+      -ms-animation: animationFrames linear 0.5s;
       -ms-animation-iteration-count: 1;
     }
   }
@@ -265,6 +284,10 @@ footer {
   margin: 50px 0 20px;
   padding: 18px 0 0 20px;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   background: #f4f4f4 url("../img/footer.png") no-repeat 460px 0;
   font-size: 14px;
   line-height: 22px;
