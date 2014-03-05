@@ -1,0 +1,36 @@
+/* base import */
+@import "base";
+
+/* html */
+html {
+  width: 100%;
+}
+
+/* body */
+body {
+  width: 100%;
+  background: #e4e6e5;
+  font: 12px "Arial", "Helvetica", sans-serif;
+  color: #000;
+}
+
+/* wrapper */
+div.wrapper {
+  width: 600px;
+  margin: 40px auto 0;
+}
+
+/* header */
+header {
+  margin-bottom: 80px;
+
+  /* logo */
+  h1 {
+    width: 100%;
+    max-width: 0px;
+    height: 0px;
+    margin: 0 auto;
+    background: url("../img/etym-logo.png") no-repeat;
+    text-indent: -9999px;
+  }
+}
