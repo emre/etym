@@ -1,9 +1,8 @@
 import os
+import time
 import sqlite3
-from flask import g
-from flask import Flask
-from flask import request
-from flask import render_template
+from flask import g, Flask, request, make_response
+from flask import render_template, send_from_directory
 
 app = Flask(__name__)
 
@@ -24,6 +23,13 @@ def close_connection(exception):
 @app.route('/<word>')
 def word(word):
     return render_template('index.html', word=word)
+
+@app.route('/humans.txt')
+def about():
+    date = time.ctime(os.path.getmtime(__file__))
+    response = make_response(render_template('humans.txt', date=date))
+    response.headers['Content-Type'] = 'text/plain'
+    return response
 
 @app.route('/edit')
 def edit():
