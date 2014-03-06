@@ -6,7 +6,7 @@ from flask import render_template
 from flask import redirect, url_for
 
 app = Flask(__name__)
-is_prod = False  # 'heroku' in os.environ.get('PYTHONHOME', '')
+is_prod = False # 'heroku' in os.environ.get('PYTHONHOME', '')
 
 app.debug = not is_prod
 
