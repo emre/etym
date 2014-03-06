@@ -104,7 +104,24 @@ def api(word=None):
     etym = get_word(word)
     if not etym:
         return jsonify({"word": False})
-    return jsonify(**etym)
+
+    related = lambda rel_type: get_related(etym['id'], rel_type)
+    return jsonify({
+        "id": etym['id'],
+        "type": etym['type'],
+        "word": etym['word'],
+        "description": etym['description'],
+        "slug": etym['slug'],
+        "origin": {
+            "language": etym['origin'],
+            "code": etym['origin_code'],
+            "word": etym['original_word']
+        },
+        "diveration": {
+            "to": related(1),
+            "from": related(2)
+        }
+    })
 
 
 @app.route('/about')
