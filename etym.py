@@ -51,7 +51,8 @@ def get_word(word=None):
         etym = query_db("SELECT * FROM word ORDER BY RANDOM() LIMIT 1",
                         one=True)
     else:
-        etym = query_db("SELECT * FROM word WHERE word = ?", [word], one=True)
+        etym = query_db("SELECT * FROM word WHERE word LIKE ?", [word],
+                        one=True)
     return etym
 
 
@@ -109,4 +110,4 @@ def new():
 @app.route('/')
 def index():
     search = request.args.get('w') or request.args.get('word', None)
-    return word(search)
+    return word(search) if search else random()
