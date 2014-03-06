@@ -110,4 +110,3 @@ def new():
 def index():
     search = request.args.get('w') or request.args.get('word', None)
     return word(search)
-
