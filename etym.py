@@ -1,6 +1,8 @@
 import os
+import re
 import time
 import sqlite3
+from unicodedata import normalize
 from flask import g, Flask, request, make_response, jsonify
 from flask import render_template
 from flask import redirect, url_for
@@ -10,8 +12,9 @@ is_prod = False  # 'heroku' in os.environ.get('PYTHONHOME', '')
 
 app.debug = not is_prod
 
-# Database
+# Constants
 DATABASE = "etym.db" if is_prod else "etym-dev.db"
+SLUGPUNCT = re.compile(r'[\t !"#$%&\'()*\-/<=>?@\[\\\]^_`{|},.]+')
 
 
 # note to reviewer: C/P from Flask doc.
@@ -51,9 +54,27 @@ def get_word(word=None):
         etym = query_db("SELECT * FROM word ORDER BY RANDOM() LIMIT 1",
                         one=True)
     else:
-        etym = query_db("SELECT * FROM word WHERE word LIKE ?", [word],
-                        one=True)
+        sql = "SELECT * FROM word WHERE word LIKE ? OR slug LIKE ? OR id = ?"
+        etym = query_db(sql, [word]*3, one=True)
     return etym
+
+
+def get_related(word_id, derivation_type=1):
+    sql = """SELECT word.slug, word.word FROM relation
+          LEFT JOIN word ON word.id = target_word_id
+          WHERE source_word_id = ? AND connection_type = ?"""
+    return query_db(sql, [word_id, derivation_type])
+
+
+# http://flask.pocoo.org/snippets/5/
+def slugify(text, delim=u'-'):
+    """Generates an slightly worse ASCII-only slug."""
+    result = []
+    for word in SLUGPUNCT.split(text.lower()):
+        word = normalize('NFKD', word).encode('ascii', 'ignore')
+        if word:
+            result.append(word)
+    return unicode(delim.join(result))
 
 
 # Views
@@ -62,13 +83,19 @@ def word(word):
     etym = get_word(word)
     if not etym:
         return make_response(render_template('404.html', word=word), 404)
-    return render_template('index.html', word=etym)
+
+    related = lambda rel_type: get_related(etym['id'], rel_type)
+    diveration = {
+        "to": related(1),
+        "from": related(2)
+    }
+    return render_template('index.html', word=etym, diveration=diveration)
 
 
 @app.route('/random')
 def random():
     etym = get_word()
-    return redirect(url_for('word', word=etym['word']))
+    return redirect(url_for('word', word=etym['slug']))
 
 
 @app.route('/api')

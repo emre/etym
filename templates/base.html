@@ -27,29 +27,37 @@
         <p>{{ word.description | safe }}</p>
         <nav>
           <ul>
-            <li><a href="/edit?word={{ word.word | lower | urlencode }}">Düzenle</a></li>
-            <li><a href="/extend?word={{ word.word | lower | urlencode }}">Genişlet</a></li>
-            <li><a href="/typo?word={{ word.word | lower | urlencode }}">İmla Hatası</a></li>
+            <li><a href="/edit?word={{ word.slug | lower | urlencode }}">Düzenle</a></li>
+            <li><a href="/extend?word={{ word.slug | lower | urlencode }}">Genişlet</a></li>
+            <li><a href="/typo?word={{ word.slug | lower | urlencode }}">İmla Hatası</a></li>
           </ul>
         </nav>
       </article>
       {% endblock %}
       {% block details %}
+      {% if diveration.from or diveration.to %}
       <hr>
+      {% if diveration.from %}
       <section>
         <h3>Türediği Kelimeler</h3>
         <ul>
-          <li><a href="/test1">test1</a></li>
-          <li><a href="/test2">test2</a></li>
+          {% for divered in diveration.from %}
+          <li><a href="/{{ divered.slug }}">{{ divered.word }}</a></li>
+          {% endfor %}
         </ul>
       </section>
-      <section class="padding">
+      {% endif %}
+      {% if diveration.to %}
+      <section {% if diveration.from %}class="padding"{% endif %}>
         <h3>Türettiği Kelimeler</h3>
         <ul>
-          <li><a href="/test1">test1</a></li>
-          <li><a href="/test2">test2</a></li>
+          {% for divered in diveration.to %}
+          <li><a href="/{{ divered.slug }}">{{ divered.word }}</a></li>
+          {% endfor %}
         </ul>
       </section>
+      {% endif %}
+      {% endif %}
       {% endblock %}
       <a href="/random" class="random">
         <span>
@@ -75,7 +83,6 @@
 
     ga('create', 'UA-48715484-1', 'etym.org');
     ga('send', 'pageview');
-
   </script>
 </body>
 </html>

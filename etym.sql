@@ -4,6 +4,7 @@ CREATE TABLE word (
     id            INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE,
     type          TEXT,
     word          TEXT UNIQUE,
+    slug          TEXT UNIQUE,
     origin        TEXT,
     origin_code   TEXT,
     original_word TEXT,
