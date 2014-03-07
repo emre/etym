@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>{% block title %}{{ word.word | capitalize }} Kelimesi: Etym.org - Kelime Ansiklopedisi{% endblock %}</title>
  
-  <meta name="description" content="{{ word.word }}: {{ word.description }}">
+  <meta name="description" content="{{ word.word }}: {{ word.description | striptags }}">
   <meta name="author" content="Fatih Kadir Akın">
 
   <meta property="og:image" content="https://pbs.twimg.com/profile_images/441906732004937728/3T8aJm3p.png">  
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="{{ word.word }} Kelimesi">
   <meta name="twitter:url" content="http://etym.org/{{ word.slug }}">
   <meta name="twitter:domain" content="http://etym.org">
-  <meta name="twitter:description" content="{{ word.description }}">
+  <meta name="twitter:description" content="{{ word.description | striptags }}">
   
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="static/css/main.css">
@@ -80,6 +80,7 @@
       {% endif %}
       {% endif %}
       {% endblock %}
+      <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&tw_p=tweetbutton&url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&via=etymorg" target="_blank">Twitter'da Paylaş</a>
       <a href="/random" class="random">
         <span>
           <i class="loading"></i>
@@ -118,6 +119,16 @@
 
     ga('create', 'UA-48715484-1', 'etym.org');
     ga('send', 'pageview');
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+    $(".twitter").click(function (e) {
+      var left = (screen.width/2)-(450/2);
+      var top = (screen.height/2)-(250/2);
+      var url = $(this).attr("href");
+      window.open(url, "sharer", "width=450,height=250,top="+top+",left="+left);
+      e.preventDefault();
+    });
   </script>
 </body>
 </html>

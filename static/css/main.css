@@ -440,6 +440,14 @@ a.random {
     -ms-animation: animationFrames linear 0.5s;
     -ms-animation-iteration-count: 1; }
 
+a.twitter {
+  float: right;
+  width: 46px;
+  height: 46px;
+  text-indent: -9999px;
+  direction: ltr;
+  background-image: url(../img/twitter-logo.png); }
+
 @keyframes animationFrames {
   0% {
     transform: rotate(0deg) scaleX(1) scaleY(1); }
