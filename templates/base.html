@@ -2,9 +2,15 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>{% block title %}Etym.org: {{ word.word | capitalize }} | Kelime Ansiklopedisi{% endblock %}</title>
+  <title>{% block title %}{{ word.word | capitalize }} - Kelime Ansiklopedisi{% endblock %}</title>
+ 
+  <meta name="description" content="{{ word.word }}: {{ word.description }}">
+  <meta name="author" content="Fatih Kadir Akın">
+  
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="static/css/main.css">
+  {% if word %}
+  {% endif %}
 </head>
 <body>
   <div class="wrapper">
@@ -69,11 +75,23 @@
       </a>
     </div>
     <div class="clear"></div>
+    <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-6945602608405209";
+    /* Etym.org Anasayfa */
+    google_ad_slot = "9598049599";
+    google_ad_width = 468;
+    google_ad_height = 60;
+    //-->
+    </script>
+    <script type="text/javascript"
+    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
     <footer>
       <p class="disclaimer">
         etym.org’da yer alan verilerin kesinliği doğru değildir.<br>
         Bilimsel kaynak olarak gösterilemez.<br>
         &copy; 2014 - <a href="/humans.txt">Hakkında ve İletişim</a> - <a href="/api">API</a>
+        - <a href="http://twitter.com/etymorg">Twitter</a>
       </p>
     </footer>
   </div>
