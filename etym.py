@@ -78,7 +78,7 @@ def action_page(action):
 
 # Views
 @app.route('/<word>')
-def word(word):
+def word(word=None):
     etym = get_word(word)
     if not etym:
         return make_response(render_template('404.html', word=word), 404)
@@ -156,4 +156,4 @@ def new(): return "coming soon"
 @app.route('/')
 def index():
     search = request.args.get('w') or request.args.get('word', None)
-    return word(search) if search else random()
+    return word(search)
