@@ -124,7 +124,7 @@ def api(word=None):
     related = get_related(etym['id'])
     for related_word in related:
         word = dict(related_word)
-        path = 'to' if word['connection_type'] is 1 else 'from'
+        path = 'to' if word['connection_type'] == 1 else 'from'
         word.pop('connection_type', None)
         result['diveration'][path] += [word]
 
