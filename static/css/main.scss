@@ -215,8 +215,9 @@ a.random {
       margin: 11px auto 0;
       background: url("../img/loader-arrow.png") no-repeat;
     }
+  }
 
-    .loading {
+  &:active span .loading {
       animation: animationFrames linear 0.5s;
       animation-iteration-count: 1;
       -webkit-animation: animationFrames linear 0.5s;
@@ -227,7 +228,6 @@ a.random {
       -o-animation-iteration-count: 1;
       -ms-animation: animationFrames linear 0.5s;
       -ms-animation-iteration-count: 1;
-    }
   }
 }
 

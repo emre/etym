@@ -59,22 +59,21 @@ def get_word(word=None):
     return etym
 
 
-def get_related(word_id, derivation_type=1):
-    sql = """SELECT word.slug, word.word FROM relation
+def get_related(word_id, derivation_type=None):
+    sql = """SELECT relation.connection_type,
+          word.slug, word.id, word.word FROM relation
           LEFT JOIN word ON word.id = target_word_id
-          WHERE source_word_id = ? AND connection_type = ?"""
-    return query_db(sql, [word_id, derivation_type])
+          WHERE source_word_id = ?"""
+    args = [word_id]
+    if derivation_type:
+        sql += "AND connection_type = ?"
+        args += [derivation_type]
+    return query_db(sql, args)
 
-
-# http://flask.pocoo.org/snippets/5/
-def slugify(text, delim=u'-'):
-    """Generates an slightly worse ASCII-only slug."""
-    result = []
-    for word in SLUGPUNCT.split(text.lower()):
-        word = normalize('NFKD', word).encode('ascii', 'ignore')
-        if word:
-            result.append(word)
-    return unicode(delim.join(result))
+def action_page(action):
+    etym = get_word(request.args.get('word'))
+    return render_template('action.html', word=etym,
+                            action=action)
 
 
 # Views
@@ -105,8 +104,7 @@ def api(word=None):
     if not etym:
         return jsonify({"word": False})
 
-    related = lambda rel_type: get_related(etym['id'], rel_type)
-    return jsonify({
+    result = {
         "id": etym['id'],
         "type": etym['type'],
         "word": etym['word'],
@@ -118,10 +116,19 @@ def api(word=None):
             "word": etym['original_word']
         },
         "diveration": {
-            "to": related(1),
-            "from": related(2)
+            "to": [],
+            "from": []
         }
-    })
+    }
+
+    related = get_related(etym['id'])
+    for related_word in related:
+        word = dict(related_word)
+        path = 'to' if word['connection_type'] is 1 else 'from'
+        word.pop('connection_type', None)
+        result['diveration'][path] += [word]
+
+    return jsonify(result)
 
 
 @app.route('/about')
@@ -132,23 +139,18 @@ def about():
 
 
 @app.route('/edit')
-def edit():
-    return "coming soon"
-
+def edit(): return "coming soon"
 
 @app.route('/extend')
-def extend():
-    return "coming soon"
+def extend(): return "coming soon"
 
 
 @app.route('/typo')
-def typo():
-    return "coming soon"
+def typo(): return "coming soon"
 
 
 @app.route('/new')
-def new():
-    return "coming soon"
+def new(): return "coming soon"
 
 
 @app.route('/')
