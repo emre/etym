@@ -44,10 +44,9 @@
         <h2>{{ word.word | capitalize }}</h2>
         <h3>{{ word.type }}, {{ word.origin }}: <span lang="{{ word.origin_code }}">{{ word.original_word }}</span></h3>
         <p>{{ word.description | safe }}</p>
-        <nav style="display:none;">
+        <nav>
           <ul>
-            <li><a href="/edit?word={{ word.slug | lower | urlencode }}">Düzenle</a></li>
-            <li><a href="/extend?word={{ word.slug | lower | urlencode }}">Genişlet</a></li>
+            <li><a href="/contribute?word={{ word.slug | lower | urlencode }}">Katkıda Bulun</a></li>
             <li><a href="/typo?word={{ word.slug | lower | urlencode }}">İmla Hatası</a></li>
           </ul>
         </nav>
@@ -89,6 +88,12 @@
       </a>
     </div>
     <div class="clear"></div>
+    <div class="request-words">
+      <p>
+        Yeni kelimeler ekleyerek <strong>etym.org</strong>'a katkıda bulunabilirsiniz!<br>
+        <a href="/new">Kendiniz ekleyin</a>, ya da <a href="/request" onclick="request()">söyleyin biz ekleyelim!</a>
+      </p>
+    </div>
     <!--<script type="text/javascript">
     google_ad_client = "ca-pub-6945602608405209";
     /* Etym.org Anasayfa */

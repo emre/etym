@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 import time
@@ -137,20 +139,26 @@ def about():
     date = time.ctime(os.path.getmtime(__file__))
     return render_plain('humans.txt', date=date)
 
+base_repo = 'https://github.com/f/etym'
 
-@app.route('/edit')
-def edit(): return "coming soon"
-
-@app.route('/extend')
-def extend(): return "coming soon"
-
+@app.route('/contribute')
+def contribute():
+    word = get_word(request.args.get('word'))
+    if not word:
+        return "Hatalı kelime."
+    return redirect('{0}/issues/new?labels=enhancement&assignee=f&title=Geni%C5%9Flet%3A%20{1}&body={2}'.format(base_repo, word['word'], word['description']))
 
 @app.route('/typo')
-def typo(): return "coming soon"
-
+def typo():
+    return redirect('{0}/issues/new?labels=bug&assignee=f&title=%C4%B0mla%20Hatas%C4%B1%3A%20{1}'.format(base_repo, request.args.get('word')))
 
 @app.route('/new')
-def new(): return "coming soon"
+def new():
+    return redirect('{0}/blob/master/README.md'.format(base_repo))
+
+@app.route('/request')
+def request_():
+    return redirect('{0}/issues/new?labels=enhancement&assignee=f&title=Yeni Kelime%3A%20{1}'.format(base_repo, request.args.get('word', '')))
 
 
 @app.route('/')

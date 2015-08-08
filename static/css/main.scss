@@ -285,6 +285,27 @@ a.twitter {
   }
 }
 
+a:hover {
+  opacity: 0.8;
+}
+
+.request-words {
+  font-size: 18px;
+  padding: 50px 0 0;
+  text-align: center;
+  line-height: 1.6;
+  a {
+    background-color: rgba(118, 119, 119, 0.2);
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 4px;
+    &:hover {
+      background-color: rgb(118, 119, 119);
+      color: #fff;
+    }
+  }
+}
+
 /* footer */
 footer {
   width: 100%;

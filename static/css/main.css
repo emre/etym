@@ -451,37 +451,44 @@ a.twitter {
 @keyframes animationFrames {
   0% {
     transform: rotate(0deg) scaleX(1) scaleY(1); }
-
   100% {
     transform: rotate(360deg) scaleX(1) scaleY(1); } }
-
 @-moz-keyframes animationFrames {
   0% {
     -moz-transform: rotate(0deg) scaleX(1) scaleY(1); }
-
   100% {
     -moz-transform: rotate(360deg) scaleX(1) scaleY(1); } }
-
 @-webkit-keyframes animationFrames {
   0% {
     -webkit-transform: rotate(0deg) scaleX(1) scaleY(1); }
-
   100% {
     -webkit-transform: rotate(360deg) scaleX(1) scaleY(1); } }
-
 @-o-keyframes animationFrames {
   0% {
     -o-transform: rotate(0deg) scaleX(1) scaleY(1); }
-
   100% {
     -o-transform: rotate(360deg) scaleX(1) scaleY(1); } }
-
 @-ms-keyframes animationFrames {
   0% {
     -ms-transform: rotate(0deg) scaleX(1) scaleY(1); }
-
   100% {
     -ms-transform: rotate(360deg) scaleX(1) scaleY(1); } }
+a:hover {
+  opacity: 0.8; }
+
+.request-words {
+  font-size: 18px;
+  padding: 50px 0 0;
+  text-align: center;
+  line-height: 1.6; }
+  .request-words a {
+    background-color: rgba(118, 119, 119, 0.2);
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 4px; }
+    .request-words a:hover {
+      background-color: #767777;
+      color: #fff; }
 
 /* footer */
 footer {
