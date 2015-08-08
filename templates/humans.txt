@@ -1,11 +1,11 @@
 /* TEAM */
-  Back-end Developer: Fatih Kadir Akin
-  Site: http://fatihak.in
-  Contact: fka [at] fatihak.in
+  Developer: Fatih Kadir Akin
+  Site: http://fka.calepin.co
+  Contact: fatihkadirakin [at] gmail.com
   Twitter: @fkadev
   From: Istanbul, Turkey
 
-  Front-end Developer: Aziz Arslan
+  UI Developer: Aziz Arslan
   Twitter: @azizarslan
   From: Istanbul, Turkey
 
@@ -17,10 +17,10 @@
   UI Design: Hasan Yalcin
   Twitter: @hasanyalcin
 
-  Front-end Development: Aziz Arslan
+  UI Development: Aziz Arslan
   Twitter: @azizarslan
                             
 /* SITE */
   Last update: {{ date }} 
   Standards: HTML5, CSS3, Python, Flask, SQLite                          
-  Software: VIM, Photoshop
+  Software: VIM, Photoshop, Sublime Text

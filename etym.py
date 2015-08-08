@@ -150,7 +150,10 @@ def contribute():
 
 @app.route('/typo')
 def typo():
-    return redirect('{0}/issues/new?labels=bug&assignee=f&title=%C4%B0mla%20Hatas%C4%B1%3A%20{1}'.format(base_repo, request.args.get('word')))
+    word = get_word(request.args.get('word'))
+    if not word:
+        return "Hatalı kelime."
+    return redirect('{0}/issues/new?labels=bug&assignee=f&title=%C4%B0mla%20veya%20Bilgi%20Hatas%C4%B1%3A%20{1}&body={2}'.format(base_repo, word['word'], word['description']))
 
 @app.route('/new')
 def new():
