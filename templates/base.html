@@ -46,8 +46,8 @@
         <p>{{ word.description | safe }}</p>
         <nav>
           <ul>
-            <li><a href="/contribute?word={{ word.slug | lower | urlencode }}">Bilgi Ver</a></li>
-            <li><a href="/typo?word={{ word.slug | lower | urlencode }}">Düzelt</a></li>
+            <li><a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Genişlet: " | urlencode }}{{ word.word | urlencode }}">Bilgi Ver</a></li>
+            <li><a href="https://github.com/f/etym/issues/new?labels=bug&amp;assignee=f&amp;title={{ "İmla veya Bilgi Hatası: " | urlencode }}{{ word.word | urlencode }}&amp;body={{ word.description | urlencode }}">Düzelt</a></li>
           </ul>
         </nav>
       </article>
@@ -79,7 +79,7 @@
       {% endif %}
       {% endif %}
       {% endblock %}
-      <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&tw_p=tweetbutton&url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&via=etymorg" target="_blank">Twitter'da Paylaş</a>
+      <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&amp;tw_p=tweetbutton&amp;url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&amp;via=etymorg" target="_blank">Twitter'da Paylaş</a>
       <a href="/random" class="random">
         <span>
           <i class="loading"></i>
@@ -91,7 +91,7 @@
     <div class="request-words">
       <p>
         Yeni kelimeler ekleyerek <strong>etym.org</strong>'a katkıda bulunabilirsiniz!<br>
-        <a href="/new">Kendiniz ekleyin</a>, ya da <a href="/request" onclick="request()">söyleyin biz ekleyelim!</a>
+        <a href="https://github.com/f/etym/blob/master/README.md">Kendiniz ekleyin</a>, ya da <a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Yeni Kelime: " | urlencode }}">söyleyin biz ekleyelim!</a>
       </p>
     </div>
     <!--<script type="text/javascript">
@@ -112,6 +112,7 @@
         &copy; 2014 - <a href="/humans.txt">Hakkında ve İletişim</a> - <a href="/api">API</a>
         - <a href="http://twitter.com/etymorg">Twitter</a>
         - <a href="http://github.com/f/etym">GitHub</a>
+        - <a href="https://github.com/f/etym/issues/new?labels=question&amp;assignee=f">Soru Sorun</a>
       </p>
     </footer>
   </div>
