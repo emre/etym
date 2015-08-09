@@ -4,11 +4,11 @@
   <article>
     <h2>{{ word }}</h2>
     <p>Bu kelime bulunamadı. İsterseniz bu kelimeyi de
-      <a href="/request?word={{ word | lower | urlencode }}">ekleyebilirsiniz</a>.</p>
+      <a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Yeni Kelime: " | urlencode }}{{ word | urlencode }}">ekleyebilirsiniz</a>.</p>
     {% if word %}
     <nav>
       <ul>
-        <li><a href="/request?word={{ word | lower | urlencode }}">Bu Kelimeyi Ekle</a></li>
+        <li><a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Yeni Kelime: " | urlencode }}{{ word | urlencode }}">Bu Kelimeyi Ekle</a></li>
       </ul>
     </nav>
     {% endif %}
