@@ -51,3 +51,7 @@ gunicorn etym:app
 ```sh
 sqlite3 etym.db < etym.sql
 ```
+
+## Lisans
+
+[MIT Lisansı](http://f.mit-license.org)
