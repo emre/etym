@@ -42,7 +42,7 @@ defter:
 ## Kurulum ve Başlangıç
 
 ```sh
-pip install -r requirements
+pip install -r requirements.txt
 gunicorn etym:app
 ```
 
