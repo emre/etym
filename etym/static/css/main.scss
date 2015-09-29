@@ -1,0 +1,330 @@
+/* base import */
+@import "base";
+
+/* html */
+html {
+  width: 100%;
+}
+
+/* body */
+body {
+  width: 100%;
+  background: #e4e6e5;
+  font: 400 12px "Open Sans", "Arial", sans-serif;
+  color: #767777;
+}
+
+/* wrapper */
+.wrapper {
+  width: 600px;
+  margin: 40px auto 0;
+}
+
+/* header */
+header {
+  margin-bottom: 40px;
+
+  /* logo */
+  h1 {
+    width: 100%;
+    max-width: 289px;
+    height: 76px;
+    margin: 0 auto;
+    background: url("../img/etym-logo.png") no-repeat;
+    text-indent: -99999px;
+  }
+}
+
+/* main */
+#main {
+  width: 100%;
+  position: relative;
+}
+
+/* fieldset */
+fieldset {
+  width: 100%;
+  height: 46px;
+  background: #fff;
+
+  input[type="text"] {
+    width: 480px;
+    height: 27px;
+    float: left;
+    padding: 10px 15px 9px;
+    font-size: 18px;
+  }
+
+  button {
+    width: 90px;
+    height: 46px;
+    float: left;
+    padding: 0 30px;
+    background: #80b58e;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+  }
+}
+
+/* article */
+article {
+  width: 100%;
+  float: left;
+  position: relative;
+  margin-top: 40px;
+  padding-bottom: 15px;
+  background: #fff;
+
+  h2 {
+    width: 100%;
+    height: 53px;
+    padding: 14px 0 0 20px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    background: #767777;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+  }
+
+  h3 {
+    margin: 15px 20px 0;
+    font-weight: 700;
+    font-size: 18px;
+
+    span {
+      margin-left: 5px;
+      font-weight: 400;
+    }
+  }
+
+  p {
+    margin: 15px 20px 0;
+    font-size: 30px;
+  }
+
+  nav {
+    position: absolute;
+    top: 12px;
+    right: 11px;
+
+    li {
+      float: left;
+      margin-left: 11px;
+
+      a {
+        height: 30px;
+        display: block;
+        padding: 7px 10px 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -o-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        background: #80b58e;
+        text-transform: uppercase;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* horizontal rule */
+hr {
+  width: 100%;
+  float: left;
+  position: relative;
+  margin: 0;
+  background: #dbdbdb;
+  border: 0;
+}
+
+/* section */
+section {
+  width: 100%;
+  float: left;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  background: #fff;
+
+  &.padding {
+    padding: 5px 20px 20px;
+  }
+
+  h3 {
+    width: 180px;
+    display: inline-block;
+    font-weight: 700;
+    font-size: 18px;
+
+    &:after {
+      content: ":";
+    }
+  }
+
+  ul {
+    display: inline-block;
+
+    li {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 18px;
+      color: #80b58e;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* random link */
+a.random {
+  width: 265px;
+  height: 46px;
+  float: right;
+  padding-left: 10px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  background: #80b58e;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 45px;
+  color: #fff;
+  text-transform: uppercase;
+
+  span {
+    width: 46px;
+    height: inherit;
+    float: right;
+    display: block;
+    background: #719c7c;
+
+    i {
+      width: 20px;
+      height: 23px;
+      display: block;
+      margin: 11px auto 0;
+      background: url("../img/loader-arrow.png") no-repeat;
+    }
+  }
+
+  &:active span .loading {
+      animation: animationFrames linear 0.5s;
+      animation-iteration-count: 1;
+      -webkit-animation: animationFrames linear 0.5s;
+      -webkit-animation-iteration-count: 1;
+      -moz-animation: animationFrames linear 0.5s;
+      -moz-animation-iteration-count: 1;
+      -o-animation: animationFrames linear 0.5s;
+      -o-animation-iteration-count: 1;
+      -ms-animation: animationFrames linear 0.5s;
+      -ms-animation-iteration-count: 1;
+  }
+}
+
+a.twitter {
+  float: right;
+  width: 46px;
+  height: 46px;
+  text-indent: -9999px;
+  direction: ltr;
+  background-image: url(../img/twitter-logo.png);
+}
+
+@keyframes animationFrames {
+  0% {
+    transform:  rotate(0deg) scaleX(1) scaleY(1);
+  }
+  100% {
+    transform:  rotate(360deg) scaleX(1) scaleY(1);
+  }
+}
+
+@-moz-keyframes animationFrames {
+  0% {
+    -moz-transform:  rotate(0deg) scaleX(1) scaleY(1);
+  }
+  100% {
+    -moz-transform:  rotate(360deg) scaleX(1) scaleY(1);
+  }
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    -webkit-transform:  rotate(0deg) scaleX(1) scaleY(1);
+  }
+  100% {
+    -webkit-transform:  rotate(360deg) scaleX(1) scaleY(1);
+  }
+}
+
+@-o-keyframes animationFrames {
+  0% {
+    -o-transform:  rotate(0deg) scaleX(1) scaleY(1);
+  }
+  100% {
+    -o-transform:  rotate(360deg) scaleX(1) scaleY(1);
+  }
+}
+
+@-ms-keyframes animationFrames {
+  0% {
+    -ms-transform:  rotate(0deg) scaleX(1) scaleY(1);
+  }
+  100% {
+    -ms-transform:  rotate(360deg) scaleX(1) scaleY(1);
+  }
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.request-words {
+  font-size: 18px;
+  padding: 50px 0 0;
+  text-align: center;
+  line-height: 1.6;
+  a {
+    background-color: rgba(118, 119, 119, 0.2);
+    display: inline-block;
+    padding: 0 4px;
+    margin: 0 4px;
+    &:hover {
+      background-color: rgb(118, 119, 119);
+      color: #fff;
+    }
+  }
+}
+
+/* footer */
+footer {
+  width: 100%;
+  height: 100px;
+  float: left;
+  margin: 50px 0 20px;
+  padding: 18px 0 0 20px;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  background: #f4f4f4 url("../img/footer.png") no-repeat 460px 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: #afafaf;
+
+  a {
+    color: #80b58e;
+    text-decoration: underline;
+  }
+}

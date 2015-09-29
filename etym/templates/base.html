@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{{ word.word }} Kelimesi: Etym.org - Kelime Ansiklopedisi{% endblock %}</title>
+
+  <meta name="description" content="{{ word.word }}: {{ word.description | striptags }}">
+  <meta name="author" content="Fatih Kadir Akın">
+
+  <meta property="og:image" content="https://pbs.twimg.com/profile_images/441906732004937728/3T8aJm3p.png">
+  <meta property="og:title" content="{{ word.word }} Kelimesi">
+  <meta property="og:url" content="http://etym.org/{{ word.slug }}">
+  <meta property="og:site_name" content="Etym.org: Kelime Ansiklopedisi">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@etymorg">
+  <meta name="twitter:creator" content="@fkadev">
+  <meta name="twitter:title" content="{{ word.word }} Kelimesi">
+  <meta name="twitter:url" content="http://etym.org/{{ word.slug }}">
+  <meta name="twitter:domain" content="http://etym.org">
+  <meta name="twitter:description" content="{{ word.description | striptags }}">
+
+  <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="static/css/main.css">
+  {% if word %}
+  {% endif %}
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Etym.org <sub><em>Kelime Ansiklopedisi</em></sub></h1>
+    </header>
+    <div id="main" role="main">
+      {% block form %}
+      <fieldset>
+        <form action="/" method="get">
+          <input type="text" name="w" value="{{ word.word }}" placeholder="Aranacak kelime, sözcük veya söz öbeği">
+          <button type="submit">Ara</button>
+        </form>
+      </fieldset>
+      {% endblock %}
+      {% block content %}
+      <article>
+        <h2>{{ word.word }}</h2>
+        <h3>{{ word.type }}, {{ word.origin }}: <span lang="{{ word.origin_code }}">{{ word.original_word }}</span></h3>
+        <p>{{ word.description | safe }}</p>
+        <nav>
+          <ul>
+            <li><a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Genişlet: " | urlencode }}{{ word.word | urlencode }}">Bilgi Ver</a></li>
+            <li><a href="https://github.com/f/etym/issues/new?labels=bug&amp;assignee=f&amp;title={{ "İmla veya Bilgi Hatası: " | urlencode }}{{ word.word | urlencode }}&amp;body={{ word.description | urlencode }}">Düzelt</a></li>
+          </ul>
+        </nav>
+      </article>
+      {% endblock %}
+      {% block details %}
+      {% if diveration %}
+      {% if diveration.from or diveration.to %}
+      <hr>
+      {% if diveration.from %}
+      <section>
+        <h3>Türediği Kelimeler</h3>
+        <ul>
+          {% for divered in diveration.from %}
+          <li><a href="/{{ divered.slug }}">{{ divered.word }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+      {% if diveration.to %}
+      <section {% if diveration.from %}class="padding"{% endif %}>
+        <h3>Türettiği Kelimeler</h3>
+        <ul>
+          {% for divered in diveration.to %}
+          <li><a href="/{{ divered.slug }}">{{ divered.word }}</a></li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+      {% endblock %}
+      <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&amp;tw_p=tweetbutton&amp;url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&amp;via=etymorg" target="_blank">Twitter'da Paylaş</a>
+      <a href="/random" class="random">
+        <span>
+          <i class="loading"></i>
+        </span>
+        Rastgele Kelime Bul
+      </a>
+    </div>
+    <div class="clear"></div>
+    <div class="request-words">
+      <p>
+        Yeni kelimeler ekleyerek <strong>etym.org</strong>'a katkıda bulunabilirsiniz!<br>
+        <a href="https://github.com/f/etym/blob/master/README.md">Kendiniz ekleyin</a>, ya da <a href="https://github.com/f/etym/issues/new?labels=enhancement&amp;assignee=f&amp;title={{ "Yeni Kelime: " | urlencode }}">söyleyin biz ekleyelim!</a>
+      </p>
+    </div>
+    <!--<script type="text/javascript">
+    google_ad_client = "ca-pub-6945602608405209";
+    /* Etym.org Anasayfa */
+    google_ad_slot = "9598049599";
+    google_ad_width = 468;
+    google_ad_height = 60;
+    </script>
+    <script type="text/javascript"
+    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+    -->
+    <footer>
+      <p class="disclaimer">
+        etym.org’da yer alan verilerin kesinliği doğru değildir.<br>
+        Bilimsel kaynak olarak gösterilemez.<br>
+        &copy; 2014 - <a href="/humans.txt">Hakkında ve İletişim</a> - <a href="/api">API</a>
+        - <a href="http://twitter.com/etymorg">Twitter</a>
+        - <a href="http://github.com/f/etym">GitHub</a>
+        - <a href="https://github.com/f/etym/issues/new?labels=question&amp;assignee=f">Soru Sorun</a>
+      </p>
+    </footer>
+  </div>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-48715484-1', 'etym.org');
+    ga('send', 'pageview');
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+    $(".twitter").click(function (e) {
+      var left = (screen.width/2)-(450/2);
+      var top = (screen.height/2)-(250/2);
+      var url = $(this).attr("href");
+      window.open(url, "sharer", "width=450,height=250,top="+top+",left="+left);
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
