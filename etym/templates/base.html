@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="{{ word.description | striptags }}">
 
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="static/css/main.css">
+  <link rel="stylesheet" href="/static/css/main.css">
   {% if word %}
   {% endif %}
 </head>
@@ -78,7 +78,6 @@
       {% endif %}
       {% endif %}
       {% endif %}
-      {% endblock %}
       <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&amp;tw_p=tweetbutton&amp;url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&amp;via=etymorg" target="_blank">Twitter'da Paylaş</a>
       <a href="/random" class="random">
         <span>
@@ -86,6 +85,7 @@
         </span>
         Rastgele Kelime Bul
       </a>
+
     </div>
     <div class="clear"></div>
     <div class="request-words">
@@ -105,6 +105,8 @@
     src="//pagead2.googlesyndication.com/pagead/show_ads.js">
     </script>
     -->
+    {% endblock %}
+
     <footer>
       <p class="disclaimer">
         etym.org’da yer alan verilerin kesinliği doğru değildir.<br>

@@ -3,6 +3,7 @@ from django.utils.encoding import smart_unicode
 
 from .constants import WORD_TYPES
 
+
 class Origin(models.Model):
     name = models.CharField(max_length=64)
     code = models.CharField(max_length=8)

@@ -11,3 +11,5 @@ WORD_TYPES = (
     (3, WORD_TYPE_ADJECTIVE),
     (4, WORD_TYPE_PRONOUN),
 )
+
+WORD_ID_SET_KEY = "words"
