@@ -4,7 +4,8 @@ from models import Word, Origin
 
 
 class WordAdmin(admin.ModelAdmin):
-    pass
+    raw_id_fields = ("root_word", )
+    # prepopulated_fields = {"slug": ("name",)}
 
 
 class OriginAdmin(admin.ModelAdmin):

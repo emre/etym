@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-WORD_TYPE_NAME = "isim"
-WORD_TYPE_DEED = "eylem"
-WORD_TYPE_ADJECTIVE = "sıfat"
-WORD_TYPE_PRONOUN = "zamir"
+WORD_TYPE_NAME = "İsim"
+WORD_TYPE_DEED = "Eylem"
+WORD_TYPE_ADJECTIVE = "Sıfat"
+WORD_TYPE_PRONOUN = "Zamir"
 
 WORD_TYPES = (
     (1, WORD_TYPE_NAME),
@@ -11,5 +11,6 @@ WORD_TYPES = (
     (3, WORD_TYPE_ADJECTIVE),
     (4, WORD_TYPE_PRONOUN),
 )
+
 
 WORD_ID_SET_KEY = "words"

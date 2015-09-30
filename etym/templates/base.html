@@ -2,7 +2,8 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>{% block title %}{{ word.word }} Kelimesi: Etym.org - Kelime Ansiklopedisi{% endblock %}</title>
+  <title>{% block title %}{{ word.name|capfirst }} Kelimesi: Etym.org - Kelime
+    Ansiklopedisi{% endblock %}</title>
 
   <meta name="description" content="{{ word.word }}: {{ word.description | striptags }}">
   <meta name="author" content="Fatih Kadir Akın">
@@ -41,8 +42,10 @@
       {% endblock %}
       {% block content %}
       <article>
-        <h2>{{ word.word }}</h2>
-        <h3>{{ word.type }}, {{ word.origin }}: <span lang="{{ word.origin_code }}">{{ word.original_word }}</span></h3>
+        <h2>{{ word.name|capfirst }}</h2>
+        <h3>{{ word.word_type }}, {{ word.origin }}:
+          <span
+                lang="{{ word.origin_code }}">{{ word.original_word }}</span></h3>
         <p>{{ word.description | safe }}</p>
         <nav>
           <ul>
@@ -79,7 +82,7 @@
       {% endif %}
       {% endif %}
       <a class="twitter" href="https://twitter.com/intent/tweet?text={{ word.description | striptags | urlencode }}&amp;tw_p=tweetbutton&amp;url={{ "http://etym.org/" | urlencode }}{{ word.slug }}&amp;via=etymorg" target="_blank">Twitter'da Paylaş</a>
-      <a href="/random" class="random">
+      <a href="/" class="random">
         <span>
           <i class="loading"></i>
         </span>
@@ -111,10 +114,12 @@
       <p class="disclaimer">
         etym.org’da yer alan verilerin kesinliği doğru değildir.<br>
         Bilimsel kaynak olarak gösterilemez.<br>
-        &copy; 2014 - <a href="/humans.txt">Hakkında ve İletişim</a> - <a href="/api">API</a>
+        &copy; 2014 - <a href="/humans.txt">Hakkında ve İletişim</a> - <a
+              href="/api/v1/words/">API</a>
         - <a href="http://twitter.com/etymorg">Twitter</a>
-        - <a href="http://github.com/f/etym">GitHub</a>
-        - <a href="https://github.com/f/etym/issues/new?labels=question&amp;assignee=f">Soru Sorun</a>
+        - <a href="http://github.com/emre/etym">GitHub</a>
+        - <a
+              href="https://github.com/emre/etym/issues/new?labels=question&amp;assignee=f">Soru Sorun</a>
       </p>
     </footer>
   </div>

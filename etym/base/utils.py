@@ -12,7 +12,7 @@ def get_random_word_id(r):
 def create_word_id_list(r):
     r.sadd(
         WORD_ID_SET_KEY,
-        *Word.objects.all().values_list('id', flat=True)
+        *Word.objects.filter(is_active=True).values_list('id', flat=True)
     )
 
 
